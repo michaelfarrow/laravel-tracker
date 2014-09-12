@@ -1,0 +1,19 @@
+{
+    "name": "weyforth/tracker",
+    "description": "",
+    "license": "proprietary",
+    "require": {
+        "laravel/framework": "4.1.*"
+    },
+    "authors": [
+        {
+            "name": "Mike Farrow",
+            "email": "contact@mikefarrow.co.uk"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "Weyforth\\Tracker": "src/"
+        }
+    }
+}
