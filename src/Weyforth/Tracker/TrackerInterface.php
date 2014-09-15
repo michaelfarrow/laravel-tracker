@@ -28,10 +28,11 @@ interface TrackerInterface
      *
      * @return void
      */
-    public function notify(
+    public function trackEvent(
         $category,
         $action,
-        $label
+        $label = null,
+        $value = null
     );
 
 
