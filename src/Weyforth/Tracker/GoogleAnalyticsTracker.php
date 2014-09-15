@@ -61,8 +61,6 @@ class GoogleAnalyticsTracker implements TrackerInterface
         $this->tracker->trackEvent($event, $this->session, $this->visitor);
     }
 
-    public function 
-
     protected function getId(){
         return Config::get('tracker::config.id');
     }
