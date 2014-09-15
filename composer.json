@@ -3,7 +3,7 @@
     "description": "",
     "license": "proprietary",
     "require": {
-        "laravel/framework": "4.1.*",
+        "laravel/framework": "4.2.*",
         "unitedprototype/php-ga": "*"
     },
     "authors": [
