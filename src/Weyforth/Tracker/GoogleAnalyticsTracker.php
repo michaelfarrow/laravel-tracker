@@ -62,11 +62,11 @@ class GoogleAnalyticsTracker implements TrackerInterface
     }
 
     protected function getId(){
-        return Config::get('tracker::config.id');
+        return Config::get('tracker::id');
     }
 
     protected function getDomain(){
-        return Config::get('tracker::config.domain');
+        return Config::get('tracker::domain');
     }
 
 

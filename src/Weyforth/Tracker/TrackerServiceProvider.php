@@ -13,6 +13,7 @@
 namespace Weyforth\Tracker;
 
 use Illuminate\Support\ServiceProvider;
+use Config;
 
 class TrackerServiceProvider extends ServiceProvider
 {
@@ -25,7 +26,7 @@ class TrackerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->package('weyforth/tracker');
+        $this->package('weyforth/laravel-tracker', 'tracker');
     }
 
 
