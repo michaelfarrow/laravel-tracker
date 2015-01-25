@@ -9,7 +9,7 @@
 
 namespace Weyforth\Tracker;
 
-use UnitedPrototype\GoogleAnalytics;
+use Krizon\Google\Analytics\MeasurementProtocol\MeasurementProtocolClient;
 use Config;
 
 class GoogleAnalyticsTracker implements TrackerInterface
@@ -18,33 +18,12 @@ class GoogleAnalyticsTracker implements TrackerInterface
     /**
      * Reference to the global Google Tracker.
      * 
-     * @var GoogleAnalytics\Tracker
+     * @var Krizon\Google\Analytics\MeasurementProtocol\MeasurementProtocolClient
      */
-    protected $tracker;
-
-    /**
-     * Reference to the global Google Visitor.
-     * 
-     * @var GoogleAnalytics\Visitor
-     */
-    protected $visitor;
-
-    /**
-     * Reference to the global Google Session.
-     * 
-     * @var GoogleAnalytics\Session
-     */
-    protected $session;
-
+    protected $client;
 
     public function __construct(){
-        $this->tracker = new GoogleAnalytics\Tracker($this->getId(), $this->getDomain());
-
-        $this->visitor = new GoogleAnalytics\Visitor();
-        $this->visitor->setIpAddress($_SERVER['REMOTE_ADDR']);
-        $this->visitor->setUserAgent($_SERVER['HTTP_USER_AGENT']);
-
-        $this->session = new GoogleAnalytics\Session();
+        $this->client = MeasurementProtocolClient::factory();
     }
 
     /**
@@ -56,13 +35,26 @@ class GoogleAnalyticsTracker implements TrackerInterface
         $label = null,
         $value = null
     ) {
-        $event = new GoogleAnalytics\Event($category, $action, $label, $value);
 
-        $this->tracker->trackEvent($event, $this->session, $this->visitor);
+        $this->client->event(array(
+            'tid' => $this->getId(),
+            'cid' => $this->getCustomerId(),
+            'ec'  => $category,
+            'ea'  => $action,
+            'el'  => $label,
+            'ev'  => $value,
+        ));
+        // $event = new GoogleAnalytics\Event($category, $action, $label, $value);
+
+        // $this->tracker->trackEvent($event, $this->session, $this->visitor);
     }
 
     protected function getId(){
         return Config::get('tracker::id');
+    }
+
+    protected function getCustomerId(){
+        return Config::get('tracker::customer_id');
     }
 
     protected function getDomain(){
