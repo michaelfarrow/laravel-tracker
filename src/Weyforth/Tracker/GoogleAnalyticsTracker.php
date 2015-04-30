@@ -10,7 +10,6 @@
 namespace Weyforth\Tracker;
 
 use Krizon\Google\Analytics\MeasurementProtocol\MeasurementProtocolClient;
-use Config;
 
 class GoogleAnalyticsTracker implements TrackerInterface
 {
@@ -44,21 +43,19 @@ class GoogleAnalyticsTracker implements TrackerInterface
             'el'  => $label,
             'ev'  => $value,
         ));
-        // $event = new GoogleAnalytics\Event($category, $action, $label, $value);
 
-        // $this->tracker->trackEvent($event, $this->session, $this->visitor);
     }
 
     protected function getId(){
-        return Config::get('tracker::id');
+        return config('tracker.google.id');
     }
 
     protected function getCustomerId(){
-        return Config::get('tracker::customer_id');
+        return config('tracker.google.customer_id');
     }
 
     protected function getDomain(){
-        return Config::get('tracker::domain');
+        return config('tracker.google.domain');
     }
 
 

@@ -26,7 +26,9 @@ class TrackerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->package('weyforth/laravel-tracker', 'tracker');
+        $this->publishes([
+            __DIR__ . '/../../config/tracker.php' => config_path('tracker.php'),
+        ]);
     }
 
 
@@ -44,6 +46,5 @@ class TrackerServiceProvider extends ServiceProvider
             'Weyforth\Tracker\GoogleAnalyticsTracker'
         );
     }
-
 
 }
